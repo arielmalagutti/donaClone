@@ -1,0 +1,41 @@
+<div
+  class="bg-white w-full h-full flex flex-col px-6 py-10 gap-3 rounded-3xl shadow"
+>
+  <a
+    *ngFor="let item of todoLists"
+    href="#"
+    class="group w-full flex items-center justify-between px-4 py-2 gap-2 rounded hover:bg-zinc-500/10 transition-colors"
+  >
+    <div class="flex items-center gap-2">
+      <i class="ph ph-house-simple text font-semibold text-lg"></i>
+      <h2 class="text-sm font-bold text-ellipsis">{{ item.name }}</h2>
+    </div>
+
+    <span
+      class="bg-[#F5F4F6] min-w-[28px] p-[4px] text-zinc-700 text-xs font-semibold text-center rounded"
+    >
+      99+
+    </span>
+  </a>
+  <button
+    type="button"
+    class="group w-full flex items-center justify-between px-4 py-2 gap-2 rounded hover:bg-zinc-500/10 transition-colors"
+  >
+    <div class="flex items-center gap-2">
+      <i class="ph ph-plus text font-semibold text-lg"></i>
+      <h2 class="text-sm font-bold text-ellipsis">Create new list</h2>
+    </div>
+    <div class="flex items-center gap-2">
+      <span
+        class="bg-[#F5F4F6] p-[4px] text-zinc-700 text-xs font-semibold text-center rounded"
+      >
+        <i class="ph ph-command"></i>
+      </span>
+      <span
+        class="bg-[#F5F4F6] p-[4px] text-zinc-700 text-xs font-semibold text-center rounded"
+      >
+        E
+      </span>
+    </div>
+  </button>
+</div>
