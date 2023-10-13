@@ -25,9 +25,12 @@ export class TodoComponent {
     }
   }
 
-  onEdit() {
-    this.isEditing = true;
-    this.dataService.onEditTodo();
+  onEdit(
+    id: Todo['id'],
+    listId: Todo['todoListId'],
+    newDescription: Todo['description']
+  ) {
+    this.dataService.onEditTodo(id, listId, newDescription);
   }
 
   onDuplicate() {
