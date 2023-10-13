@@ -8,6 +8,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoComponent } from './components/todo-list/todo/todo.component';
+import { ActionsDropdownComponent } from './components/actions-dropdown/actions-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TodoComponent } from './components/todo-list/todo/todo.component';
     SearchBarComponent,
     SideBarComponent,
     TodoListComponent,
-    TodoComponent
+    TodoComponent,
+    ActionsDropdownComponent
   ],
   imports: [
     BrowserModule,
