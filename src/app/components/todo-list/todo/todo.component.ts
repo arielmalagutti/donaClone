@@ -13,6 +13,8 @@ export class TodoComponent {
 
   isEditing?: boolean = false;
 
+  isActionsOpen = false;
+
   constructor(private dataService: DataService) {}
 
   onComplete(isChecked: boolean) {
@@ -21,5 +23,18 @@ export class TodoComponent {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  onEdit() {
+    this.isEditing = true;
+    this.dataService.onEditTodo();
+  }
+
+  onDuplicate() {
+    // this.dataService.onDuplicateTodo()
+  }
+
+  onDelete(id: any, listId: any) {
+    this.dataService.onDeleteTodo(id, listId);
   }
 }

@@ -63,11 +63,25 @@ export class DataService {
 
       localStorage.setItem('allLists', JSON.stringify(this.todoLists));
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
   onEditTodo() {}
 
-  onDeleteTodo() {}
+  onDeleteTodo(id: Todo['id'], todoListId: Todo['todoListId']) {
+    try {
+      if (!id) throw new Error('Todo description is missing!');
+
+      let listId = this.todoLists.findIndex((list) => list.id === todoListId);
+      let todoIndex = this.todoLists[listId].todos?.findIndex(
+        (todo) => todo.id === id
+      );
+
+      this.todoLists[listId]?.todos?.splice(todoIndex!, 1);
+      localStorage.setItem('allLists', JSON.stringify(this.todoLists));
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
