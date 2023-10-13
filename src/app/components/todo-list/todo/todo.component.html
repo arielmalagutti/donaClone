@@ -22,9 +22,10 @@
       </div>
       <input
         #todoDescriptionInput
-        *ngIf="isEditing"
         type="text"
         placeholder="Insert a new to-do description"
+        [hidden]="!isEditing"
+        [ngStyle]="{ visibility: isEditing ? 'visible' : 'invisible' }"
         (blur)="isEditing = false"
         (keyup.enter)="
           onEdit(todo.id, todo.todoListId, todoDescriptionInput.value);
@@ -34,7 +35,8 @@
         class="w-full text-sm bg-transparent outline-none"
       />
       <span
-        *ngIf="!isEditing"
+        [hidden]="isEditing"
+        [ngStyle]="{ visibility: !isEditing ? 'visible' : 'invisible' }"
         class="text-sm text-[#4B4B4B] peer-checked:text-gray-400 peer-checked:line-through"
         >{{ todo.description }}</span
       >
@@ -52,7 +54,7 @@
     </div>
   </div>
   <app-actions-dropdown
-    (onEdit)="isEditing = true"
+    (onEdit)="isEditing = true; todoDescriptionInput.focus()"
     (onDuplicate)="onDuplicate()"
     (onDelete)="onDelete(todo.id, todo.todoListId)"
     (blur)="isActionsOpen = false"

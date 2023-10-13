@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Todo } from '@models/index';
 
 import { DataService } from '@services/data.service';
@@ -9,6 +9,7 @@ import { DataService } from '@services/data.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  @ViewChild('todoDescriptionInput') todoInput?: HTMLInputElement;
   @Input() todo!: Todo;
 
   isEditing?: boolean = false;
