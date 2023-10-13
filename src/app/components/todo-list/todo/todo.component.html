@@ -1,22 +1,26 @@
 <div
-  class="w-full px-6 py-3 bg-white/75 rounded-xl flex items-center justify-between"
+  class="group w-full px-6 py-3 bg-white/75 rounded-xl flex items-center justify-between"
 >
   <div class="flex gap-3 items-center">
     <div
-      class="w-5 h-5 bg-[#E9E9E9] hover:bg-[#D9D9D9] rounded overflow-clip transition-colors"
+      class="w-5 h-5 relative bg-[#E9E9E9] hover:bg-[#D9D9D9] rounded overflow-clip transition-colors duration-300"
     >
       <input
         #input
-        (click)="log(input)"
-        class="peer w-full h-full relative appearance-none cursor-pointer after:absolute after:checked:bg-black after:inset-0 after:h-full after:w-full after:content-[''] focus:outline-none"
-        [checked]="todo?.isComplete"
         type="checkbox"
         placeholder="To-do description"
+        class="peer w-full h-full relative appearance-none cursor-pointer after:absolute after:checked:bg-black after:inset-0 after:h-full after:w-full after:content-[''] after:transition-opacity after:duration-500 focus:outline-none"
+        [checked]="todo.isComplete"
+        (click)="onComplete(input.checked)"
       />
+      <i
+        *ngIf="input.checked"
+        class="ph-bold ph-check text-white absolute inset-0 m-auto pointer-events-none"
+      ></i>
     </div>
     <span
-      class="text-[#4B4B4B] peer-checked:text-gray-400 peer-checked:line-through"
-      >{{ todo?.description }}</span
+      class="text-sm text-[#4B4B4B] peer-checked:text-gray-400 peer-checked:line-through"
+      >{{ todo.description }}</span
     >
   </div>
 
@@ -24,9 +28,9 @@
     <button
       title="Actions"
       type="button"
-      class="flex p-1 items-center justify-center rounded bg-[#E9E9E9] hover:bg-[#D9D9D9] transition-colors"
+      class="invisible flex p-1 items-center justify-center rounded group-hover:visible hover:bg-[#ECEFF2] transition-colors duration-300"
     >
-      <i class="ph-bold ph-dots-three-vertical"></i>
+      <i class="ph-bold ph-dots-three-vertical pointer-events-none"></i>
     </button>
   </div>
 </div>

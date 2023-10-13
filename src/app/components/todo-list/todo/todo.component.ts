@@ -1,23 +1,25 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from '@models/index';
 
+import { DataService } from '@services/data.service';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
-  @Input() todo?: Todo;
+  @Input() todo!: Todo;
 
   isEditing?: boolean = false;
 
-  onComplete(id: Todo['id']) {}
+  constructor(private dataService: DataService) {}
 
-  onDelete(id: Todo['id']) {}
-
-  onEdit(id: Todo['id']) {}
-
-  log(input: any) {
-    console.log(input.checked);
+  onComplete(isChecked: boolean) {
+    try {
+      this.todo.isComplete = isChecked;
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
