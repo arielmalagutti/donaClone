@@ -11,7 +11,7 @@ import { DataService } from '@services/data.service';
 })
 export class TodoListComponent implements OnInit {
   @Input() prop?: any;
-  listId: string | null = 'home';
+  listId: string = 'home';
   todoList?: TodoList;
 
   isCreatingTodo: boolean = false;
@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.listId = params['listId'];
+      this.listId = params['listId'] || '';
       this.todoList = this.dataService.todoLists.find(
         (list) => list.id === this.listId
       );
@@ -33,7 +33,7 @@ export class TodoListComponent implements OnInit {
   onCreateTodo(input: HTMLInputElement) {
     let description = input.value;
 
-    this.dataService.onCreateTodo(description, '0');
+    this.dataService.onCreateTodo(description, this.listId);
     input.value = '';
   }
 

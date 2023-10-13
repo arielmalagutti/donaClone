@@ -48,7 +48,9 @@ export class DataService {
     try {
       if (!description) throw new Error('Todo description is missing!');
 
-      this.todoLists[0].todos?.push({
+      let listId = this.todoLists.findIndex((list) => list.id === todoListId);
+
+      this.todoLists[listId]?.todos?.push({
         id: String(this._todoId),
         todoListId,
 
