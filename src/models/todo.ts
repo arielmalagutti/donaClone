@@ -13,5 +13,5 @@ export type Todo = {
   description: string;
 
   createdAt: string;
-  completedAt?: string;
+  completedAt?: string | null;
 };

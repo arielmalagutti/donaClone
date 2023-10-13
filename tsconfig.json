@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@models/*": ["./src/models/*"],
-      "@mocks/*": ["./src/assets/__mockups/*"]
+      "@mocks/*": ["./src/assets/__mockups/*"],
+      "@services/*": ["./src/app/services/*"]
     },
     "rootDir": "./src",
     "outDir": "./dist/out-tsc",
