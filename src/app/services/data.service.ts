@@ -80,6 +80,11 @@ export class DataService {
         (todo) => todo.id === id
       );
 
+      if (
+        newDescription === this.todoLists[listId].todos![todoIndex!].description
+      )
+        return;
+
       this.todoLists[listId].todos![todoIndex!].description = newDescription;
       localStorage.setItem('allLists', JSON.stringify(this.todoLists));
     } catch (e) {

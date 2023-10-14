@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TodoList } from '@models/index';
 
 import { DataService } from '@services/data.service';
@@ -10,7 +10,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./side-bar.component.css'],
 })
 export class SideBarComponent implements OnInit {
-  @ViewChild('input') input?: HTMLInputElement;
+  newListInputElement!: ElementRef<HTMLInputElement>;
+
+  @ViewChild('newListInput') set newListInput(
+    listInputRef: ElementRef<HTMLInputElement>
+  ) {
+    if (listInputRef) {
+      this.newListInputElement = listInputRef;
+      this.newListInputElement.nativeElement.focus();
+    }
+  }
+
   todoLists: TodoList[] = this.data.todoLists;
   newList?: TodoList;
 
@@ -27,7 +37,6 @@ export class SideBarComponent implements OnInit {
 
   createNewList() {
     this.isEditing = true;
-    this.input?.focus();
   }
 
   handleNewList(listName: string) {
@@ -36,6 +45,7 @@ export class SideBarComponent implements OnInit {
       name: listName,
       todos: [],
     };
+
     try {
       if (!this.newList)
         throw new Error('Please give a name to your new list!');
@@ -47,5 +57,9 @@ export class SideBarComponent implements OnInit {
 
   onBlur() {
     this.isEditing = false;
+  }
+
+  log(a: any) {
+    console.log(a);
   }
 }

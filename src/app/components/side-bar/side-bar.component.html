@@ -1,5 +1,5 @@
 <div
-  class="bg-[#fefefecc] w-full h-full flex flex-col px-6 py-10 gap-3 rounded-3xl shadow overflow-y-auto"
+  class="bg-[#fefefecc] w-full h-full flex flex-col px-6 py-10 gap-[3px] rounded-3xl shadow overflow-y-auto"
 >
   <a
     *ngFor="let list of todoLists"
@@ -30,13 +30,13 @@
         <i class="ph-bold ph-plus"></i>
       </span>
       <input
-        #input
+        #newListInput
         *ngIf="isEditing"
         type="text"
-        placeholder="List name"
+        placeholder="Insert a new to-do description"
         (blur)="onBlur()"
-        (keyup.enter)="handleNewList(input.value)"
-        class="text-black text-sm bg-transparent outline-none"
+        (keyup.enter)="handleNewList(newListInput.value)"
+        class="w-full text-sm bg-transparent outline-none"
       />
       <h2
         *ngIf="!isEditing"
