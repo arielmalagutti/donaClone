@@ -27,12 +27,13 @@ export class SideBarComponent implements OnInit {
   listId: string | null = null;
 
   isEditing: boolean = false;
-  isSelected: boolean = false;
+  isSelected: boolean[] = [];
 
   constructor(private data: DataService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('listId');
+    this.todoLists.forEach((todoList) => this.isSelected.push(false));
   }
 
   createNewList() {
@@ -53,6 +54,13 @@ export class SideBarComponent implements OnInit {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  handleSelected(index: number) {
+    this.isSelected = this.isSelected.map((listSelected) => {
+      return (listSelected = false);
+    });
+    this.isSelected[index] = true;
   }
 
   onBlur() {
