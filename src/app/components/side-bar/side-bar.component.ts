@@ -3,6 +3,7 @@ import { TodoList } from '@models/index';
 
 import { DataService } from '@services/data.service';
 import { ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-side-bar',
@@ -67,7 +68,7 @@ export class SideBarComponent implements OnInit {
     this.isEditing = false;
   }
 
-  log(a: any) {
-    console.log(a);
+  drop(event: CdkDragDrop<TodoList[]>) {
+    moveItemInArray(this.todoLists, event.previousIndex, event.currentIndex);
   }
 }

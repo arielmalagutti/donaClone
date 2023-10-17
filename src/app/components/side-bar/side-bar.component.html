@@ -1,7 +1,10 @@
 <div
   class="bg-[#fefefecc] w-full h-full flex flex-col px-10 py-10 gap-[3px] rounded-3xl shadow overflow-y-auto"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
 >
   <a
+    cdkDrag
     *ngFor="let list of todoLists; let i = index"
     [routerLink]="['/app', list.id]"
     href="#"
