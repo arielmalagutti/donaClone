@@ -9,6 +9,8 @@ import { DataService } from '@services/data.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  @Input() firstChild?: boolean;
+  @Input() lastChild?: boolean;
   todoInputElement!: ElementRef<HTMLInputElement>;
 
   @ViewChild('todoInput') set todoInput(

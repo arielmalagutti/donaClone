@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TodoList } from '@models/index';
+import { Todo, TodoList } from '@models/index';
 
 import { DataService } from '@services/data.service';
 
@@ -10,7 +11,6 @@ import { DataService } from '@services/data.service';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
-  @Input() prop?: any;
   listId: string = 'home';
   todoList?: TodoList;
 
@@ -42,5 +42,15 @@ export class TodoListComponent implements OnInit {
       input.value = '';
       this.isCreatingTodo = false;
     }
+  }
+
+  drop(event: CdkDragDrop<Todo[]>) {
+    const reverseTodoIndex = this.todoList!.todos!.length - 1;
+
+    moveItemInArray(
+      this.todoList!.todos!,
+      reverseTodoIndex - event.previousIndex,
+      reverseTodoIndex - event.currentIndex
+    );
   }
 }

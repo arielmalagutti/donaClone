@@ -1,7 +1,11 @@
 <div class="relative">
   <div
     id="Todo"
-    class="group w-full px-6 py-3 bg-white/75 rounded-xl flex items-center justify-between"
+    [ngClass]="{
+      'rounded-t-2xl': firstChild,
+      'rounded-b-2xl': lastChild
+    }"
+    class="group w-ful.l px-6 py-3 bg-white/75 rounded-lg flex items-center justify-between"
   >
     <div class="w-full flex gap-3 items-center">
       <div
