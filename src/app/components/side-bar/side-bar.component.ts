@@ -34,7 +34,13 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('listId');
-    this.todoLists.forEach((todoList) => this.isSelected.push(false));
+    this.initializeSelectedList();
+  }
+
+  private initializeSelectedList() {
+    this.todoLists.forEach((todoList) =>
+      this.isSelected.push(todoList.id === this.listId)
+    );
   }
 
   createNewList() {
@@ -58,9 +64,7 @@ export class SideBarComponent implements OnInit {
   }
 
   handleSelected(index: number) {
-    this.isSelected = this.isSelected.map((listSelected) => {
-      return (listSelected = false);
-    });
+    this.isSelected.fill(false);
     this.isSelected[index] = true;
   }
 
