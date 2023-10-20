@@ -1,0 +1,44 @@
+<div class="relative">
+  <button
+    (click)="toggleIconPicker()"
+    class="relative flex items-center justify-center px-2 py-2 gap-2 bg-[#f2f4f7] rounded-xl text-sm"
+  >
+    <div
+      [ngClass]="{ 'opacity-100': isIconPickerOpen }"
+      class="w-1/2 h-1/2 absolute top-0 left-0 opacity-0 -translate-x-1/2 translate-y-1/2 bg-gradient-to-br from-accent-red from-70% to-transparent blur-2xl transition-all duration-500"
+    ></div>
+
+    <app-dona-svg class="stroke-accent-blue"></app-dona-svg>
+    <i class="ph-bold ph-caret-down text-sm"></i>
+  </button>
+
+  <div
+    *ngIf="isIconPickerOpen"
+    class="w-[240px] h-[120px] absolute top-[58px] -left-1 z-10 flex px-3 py-5 bg-[#fefefe] rounded-2xl"
+  >
+    <div class="flex flex-col gap-3 text-sm font-medium">
+      <div>
+        <span
+          class="px-2 py-2 bg-[#eff2f4] text-[#27272b] text-center rounded-lg shadow-sm"
+          >Colors
+        </span>
+      </div>
+
+      <div class="w-full h-full">
+        <button
+          *ngFor="let color of availableColors"
+          class="p-[9px] border-2 border-transparent hover:border-[#b0b4ba] rounded-[9px] transition-colors"
+        >
+          <div
+            [ngClass]="color"
+            class="w-[14px] h-[14px] bg-accent-blue rounded-[5.5px]"
+          ></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Spacer (Straight line to divide sections) -->
+
+    <!-- Color Picker -->
+  </div>
+</div>

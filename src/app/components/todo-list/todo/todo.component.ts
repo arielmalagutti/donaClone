@@ -26,7 +26,7 @@ export class TodoComponent {
 
   isEditing?: boolean = false;
 
-  isActionsOpen = false;
+  isActionsOpen: boolean = false;
 
   constructor(private dataService: DataService) {}
 

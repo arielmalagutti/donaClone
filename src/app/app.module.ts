@@ -10,6 +10,8 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoComponent } from './components/todo-list/todo/todo.component';
 import { ActionsDropdownComponent } from './components/actions-dropdown/actions-dropdown.component';
+import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
+import { DonaSvgComponent } from './components/dona-svg/dona-svg.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ActionsDropdownComponent } from './components/actions-dropdown/actions-
     TodoListComponent,
     TodoComponent,
     ActionsDropdownComponent,
+    IconPickerComponent,
+    DonaSvgComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, DragDropModule],
   providers: [],
