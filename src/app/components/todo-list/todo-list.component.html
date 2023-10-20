@@ -1,60 +1,106 @@
 <div class="w-full h-full pt-10 flex flex-col items-center">
   <div class="max-w-[664px] w-full h-full flex flex-col gap-8">
-    <div class="w-full gap-6 flex items-center">
-      <i [ngClass]="todoList?.icon" class="ph-bold text-xl"></i>
-      <svg
-        class="h-5 fill-accent-blue"
-        viewBox="0 0 40 40"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12 0C5.37258 0 0 5.37258 0 12V28C0 34.6274 5.37258 40 12 40H28C34.6274 40 40 34.6274 40 28V12C40 5.37258 34.6274 0 28 0H12ZM11 5C7.68629 5 5 7.68629 5 11V29C5 32.3137 7.68629 35 11 35H29C32.3137 35 35 32.3137 35 29V11C35 7.68629 32.3137 5 29 5H11Z"
-        />
-      </svg>
+    <div
+      [ngClass]="{ 'bg-white px-1 py-2': isEditing }"
+      class="w-full h-full max-h-12 relative gap-6 flex items-center rounded-xl"
+    >
+      <app-icon-picker *ngIf="isEditing"></app-icon-picker>
+      <i
+        *ngIf="todoList?.icon && !isEditing"
+        [ngClass]="todoList?.icon"
+        class="ph-bold text-xl"
+      ></i>
+      <app-dona-svg
+        *ngIf="!isEditing"
+        [ngClass]="{ 'opacity-100': !isEditing }"
+        class="opacity-0 stroke-accent-yellow"
+      ></app-dona-svg>
+
       <div class="group flex items-center justify-center gap-2">
-        <h1 class="text-lg font-semibold text-[#25292C] dark:text-zinc-50">
+        <input
+          #listNameEditorInput
+          *ngIf="this.isEditing"
+          [value]="this.todoList?.name"
+          type="text"
+          placeholder="Insert a new name for this list"
+          (blur)="listNameEditorInput.value = ''; this.isEditing = false"
+          (keyup.escape)="this.isEditing = false"
+          (keyup.enter)="this.handleEditList(listNameEditorInput)"
+          class="flex bg-transparent placeholder:text-base text-xl font-semibold text-[#25292C] outline-none"
+        />
+        <h1
+          *ngIf="!this.isEditing"
+          class="flex text-xl font-semibold text-[#25292C] dark:text-zinc-50 text-ellipsis"
+        >
           {{ this.todoList?.name }}
         </h1>
+
         <button
           title="Actions"
           type="button"
+          (click)="toggleActions()"
           class="invisible flex p-1 items-center justify-center rounded group-hover:visible hover:bg-[#ECEFF2] transition-colors duration-300"
         >
           <i class="ph-bold ph-dots-three-vertical"></i>
         </button>
       </div>
+
+      <div class="relative left-0 w-full">
+        <app-actions-dropdown
+          *ngIf="this.isActionsOpen"
+          (onEdit)="this.isEditing = true; this.isActionsOpen = false"
+          (blur)="this.isActionsOpen = false"
+        ></app-actions-dropdown>
+      </div>
     </div>
 
-    <div class="w-full h-full flex flex-col pl-[44px] gap-6 overflow-y-auto">
+    <div
+      class="w-full h-full flex flex-col pl-[44px] pr-2 gap-6 overflow-y-auto"
+    >
       <div
-        class="group group-focus-within:bg-white w-full px-6 py-3 gap-3 flex items-center bg-[#E0E0E6] rounded-xl shadow"
+        [ngClass]="{ 'bg-white': isCreatingTodo }"
+        class="group group-:bg-white relative w-full pr-6 py-3 gap-3 flex items-center bg-[#E0E0E6] rounded-xl shadow transition-colors duration-300"
       >
-        <label
-          [hidden]="!isCreatingTodo"
-          class="w-5 h-5 relative bg-[##e9ecef] hover:bg-[#D9D9D9] rounded overflow-clip transition-colors duration-300"
-        >
-          <input
-            disabled
-            type="checkbox"
-            class="peer w-full h-full relative appearance-none cursor-not-allowed after:absolute after:checked:bg-black after:inset-0 after:h-full after:w-full after:content-[''] after:transition-opacity after:duration-500 focus:outline-none"
-          />
-        </label>
         <input
-          #input
-          class="w-full bg-transparent focus:outline-none group-focus:bg-white transition-colors duration-300"
+          #fakeCheckbox
+          disabled
+          [ngClass]="{ 'opacity-100 left-6': isCreatingTodo }"
+          type="checkbox"
+          class="w-5 h-5 absolute left-0 opacity-0 bg-[#e9ecef] rounded-[7px] appearance-none cursor-not-allowed focus:outline-none transition-all duration-500"
+        />
+
+        <input
+          #addTodoInput
+          [ngClass]="{ 'pl-[56px]': isCreatingTodo }"
+          class="w-full pl-6 bg-transparent outline-none group-focus:bg-white transition-all duration-300"
           type="text"
           (click)="isCreatingTodo = true"
-          (blur)="onBlur(input)"
-          (keyup.enter)="onCreateTodo(input)"
+          (blur)="onBlur(addTodoInput)"
+          (keyup.enter)="onCreateTodo(addTodoInput)"
           placeholder="Write a new task"
         />
+
+        <div
+          [ngClass]="{ 'opacity-100': !isCreatingTodo }"
+          class="relative opacity-0 flex items-center gap-[3px] transition-opacity duration-300"
+        >
+          <span
+            *ngIf="!isEditing"
+            class="bg-[#d4d7da] w-5 h-5 flex items-center justify-center text-[#616870] text-xs font-semibold text-center rounded-[7px]"
+          >
+            <i class="ph-bold ph-command"></i>
+          </span>
+          <span
+            *ngIf="!isEditing"
+            class="bg-[#d4d7da] w-5 h-5 flex items-center justify-center text-[#616870] text-xs font-semibold text-center rounded-[7px]"
+          >
+            E
+          </span>
+        </div>
       </div>
 
       <div
-        class="flex flex-col gap-1"
+        class="w-full h-full flex flex-col gap-1"
         cdkDropList
         (cdkDropListDropped)="drop($event)"
       >
@@ -69,6 +115,15 @@
           [firstChild]="first"
           [lastChild]="last"
         ></app-todo>
+
+        <div
+          *ngIf="!todoList?.todos?.length"
+          class="w-full h-full flex items-center justify-center"
+        >
+          <span class="text-[#cfd2d5] font-medium -translate-y-[60px]"
+            >You're all set
+          </span>
+        </div>
       </div>
     </div>
   </div>

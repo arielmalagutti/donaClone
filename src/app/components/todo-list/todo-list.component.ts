@@ -14,6 +14,9 @@ export class TodoListComponent implements OnInit {
   listId: string = 'home';
   todoList?: TodoList;
 
+  isEditing: boolean = false;
+  isActionsOpen: boolean = false;
+
   isCreatingTodo: boolean = false;
 
   constructor(
@@ -30,11 +33,23 @@ export class TodoListComponent implements OnInit {
     });
   }
 
+  toggleActions() {
+    this.isActionsOpen = !this.isActionsOpen;
+  }
+
   onCreateTodo(input: HTMLInputElement) {
     let description = input.value;
 
     this.dataService.onCreateTodo(description, this.listId);
     input.value = '';
+  }
+
+  handleEditList(input: HTMLInputElement) {
+    if (input.value.trim())
+      this.dataService.onEditList({ id: this.listId, name: input.value });
+
+    this.isEditing = false;
+    this.isActionsOpen = false;
   }
 
   onBlur(input: HTMLInputElement) {

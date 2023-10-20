@@ -35,7 +35,17 @@ export class DataService {
     }
   }
 
-  onEditList() {}
+  onEditList({ id, name: newListname }: TodoList) {
+    try {
+      this.todoLists.filter((list, index) => {
+        if (list.id === id) this.todoLists[index].name = newListname;
+      });
+
+      localStorage.setItem('allLists', JSON.stringify(this.todoLists));
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   onDeleteList() {}
 
