@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Todo, TodoList } from '@models/index';
 
@@ -11,6 +11,16 @@ import { DataService } from '@services/data.service';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
+  listNameEditorInputRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('listNameEditorInput') set todoInput(
+    listInputRef: ElementRef<HTMLInputElement>
+  ) {
+    if (listInputRef) {
+      this.listNameEditorInputRef = listInputRef;
+      this.listNameEditorInputRef.nativeElement.focus();
+    }
+  }
+
   listId: string = 'home';
   todoList?: TodoList;
 
