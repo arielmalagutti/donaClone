@@ -10,12 +10,6 @@ module.exports = {
       },
 
       boxShadow: {
-        blur: {
-          1: "20px 200px 240px rgba(0, 0, 0, 0.1)",
-          2: "0px 160px 160px rgba(0, 0, 0, 0.1)",
-          3: "0px -280px 220px rgba(0, 0, 0, 0.1)",
-        },
-
         draggableItem:
           "0 4px 12px rgba(0 0 0 / 3%),0 30px 80px rgba(0 0 0 / 10%), inset 0 1px 0 0 var(--category-item-inset-shadow,transparent)",
       },
@@ -71,6 +65,10 @@ module.exports = {
 
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
+
+      strokeWidth: {
+        1.5: 1.5,
       },
     },
   },

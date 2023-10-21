@@ -143,13 +143,13 @@ export const todos: TodoList[] = [
     ],
   },
   {
-    icon: 'dona fill-red',
-    id: 'travel-to-hamas',
-    name: 'Travel to Hamas',
+    icon: 'dona stroke-accent-purple-200',
+    id: 'travel-to-greece',
+    name: 'Travel to Greece',
     todos: [
       {
         id: '1',
-        todoListId: 'travel-to-hamas',
+        todoListId: 'travel-to-greece',
         isComplete: true,
         description: 'Buy groceries',
         createdAt: '2023-10-12T08:00:00Z',
@@ -157,7 +157,7 @@ export const todos: TodoList[] = [
       },
       {
         id: '2',
-        todoListId: 'travel-to-hamas',
+        todoListId: 'travel-to-greece',
         isComplete: false,
         description: 'Pay bills',
         createdAt: '2023-10-12T10:00:00Z',
@@ -166,7 +166,7 @@ export const todos: TodoList[] = [
     ],
   },
   {
-    icon: 'dona fill-blue',
+    icon: 'dona stroke-accent-blue-100',
     id: 'remote-poop',
     name: 'Remote poop',
     todos: [
@@ -189,7 +189,7 @@ export const todos: TodoList[] = [
     ],
   },
   {
-    icon: 'dona fill-green',
+    icon: 'dona stroke-accent-green-100',
     id: 'touch-grass',
     name: 'Touch grass',
     todos: [

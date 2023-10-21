@@ -2,21 +2,21 @@
   <div class="max-w-[664px] w-full h-full flex flex-col gap-8">
     <div
       [ngClass]="{ 'bg-white px-1 py-2': isEditing }"
-      class="w-full h-full max-h-12 relative gap-6 flex items-center rounded-xl"
+      class="w-full h-full max-h-12 relative gap-3 flex items-center rounded-xl"
     >
       <app-icon-picker *ngIf="isEditing"></app-icon-picker>
       <i
-        *ngIf="todoList?.icon && !isEditing"
+        *ngIf="todoList?.icon?.includes('ph') && !isEditing"
         [ngClass]="todoList?.icon"
         class="ph-bold text-xl"
       ></i>
       <app-dona-svg
-        *ngIf="!isEditing"
-        [ngClass]="{ 'opacity-100': !isEditing }"
-        class="opacity-0 stroke-accent-yellow"
+        *ngIf="todoList?.icon?.includes('dona') && !isEditing"
+        [ngClass]="[todoList?.icon, !isEditing ? 'opacity-100' : '']"
+        class="opacity-0 transition-opacity duration-500"
       ></app-dona-svg>
 
-      <div class="group flex items-center justify-center gap-2">
+      <div class="w-full group flex items-center gap-2">
         <input
           #listNameEditorInput
           *ngIf="this.isEditing"
@@ -35,28 +35,32 @@
           {{ this.todoList?.name }}
         </h1>
 
-        <button
-          title="Actions"
-          type="button"
-          (click)="toggleActions()"
-          class="invisible flex p-1 items-center justify-center rounded group-hover:visible hover:bg-[#ECEFF2] transition-colors duration-300"
-        >
-          <i class="ph-bold ph-dots-three-vertical"></i>
-        </button>
-      </div>
+        <div class="relative">
+          <button
+            title="Actions"
+            type="button"
+            (click)="toggleActions()"
+            [ngClass]="{ 'opacity-100 -translate-x-0': isActionsOpen }"
+            class="w-8 h-8 translate-x-3 opacity-0 flex items-center justify-center p-1 rounded-lg group-hover:opacity-100 hover:bg-[#FFFFFF50] group-hover:translate-x-0 transition-all duration-300"
+          >
+            <i class="ph-bold ph-dots-three-vertical text-lg"></i>
+          </button>
 
-      <div class="relative left-0 w-full">
-        <app-actions-dropdown
-          *ngIf="this.isActionsOpen"
-          (onEdit)="this.isEditing = true; this.isActionsOpen = false"
-          (blur)="this.isActionsOpen = false"
-        ></app-actions-dropdown>
+          <div
+            *ngIf="isActionsOpen"
+            [ngClass]="{ 'opacity-100': isActionsOpen }"
+            class="opacity-0 max-w-[148px] w-[148px] absolute z-10 top-9 left-0 flex flex-col p-1 gap-1 bg-white rounded-[11px] shadow transition-opacity duration-1000"
+          >
+            <app-actions-dropdown
+              (onEdit)="this.isEditing = true; this.isActionsOpen = false"
+              (blur)="this.isActionsOpen = false"
+            ></app-actions-dropdown>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div
-      class="w-full h-full flex flex-col pl-[44px] pr-2 gap-6 overflow-y-auto"
-    >
+    <div class="w-full h-full flex flex-col pl-11 pr-2 gap-6 overflow-y-auto">
       <div
         [ngClass]="{ 'bg-white': isCreatingTodo }"
         class="group group-:bg-white relative w-full pr-6 py-3 gap-3 flex items-center bg-[#E0E0E6] rounded-xl shadow transition-colors duration-300"
