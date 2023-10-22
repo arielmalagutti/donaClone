@@ -1,15 +1,18 @@
 <div class="relative">
   <button
     (click)="toggleIconPicker()"
-    class="relative flex items-center justify-center px-2 py-2 gap-2 bg-[#f2f4f7] rounded-xl text-sm"
+    class="relative flex items-center justify-center px-2 py-2 gap-2 bg-[#f2f4f7] rounded-lg text-sm"
   >
     <div
       [ngClass]="{ 'opacity-100 translate-x-0': isIconPickerOpen }"
       class="w-1/2 h-1/2 opacity-0 absolute top-1/2 -left-6 -translate-x-20 -translate-y-1/2 bg-accent-purple-200 rounded-1/2 blur-2xl transition-all duration-700"
     ></div>
 
-    <app-dona-svg class="stroke-accent-blue"></app-dona-svg>
-    <i class="ph-bold ph-caret-down text-sm"></i>
+    <app-dona-svg
+      twClasses="h-[14px] stroke-2"
+      class="stroke-2 stroke-accent-blue-100"
+    ></app-dona-svg>
+    <i class="ph-bold ph-caret-down text-[10px]"></i>
   </button>
 
   <div
