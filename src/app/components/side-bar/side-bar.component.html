@@ -9,16 +9,26 @@
     [routerLink]="['/app', list.id]"
     href="#"
     [ngClass]="isSelected[i] ? 'bg-sideBar-item-light' : ''"
-    class="group relative w-full flex items-center justify-between px-2 py-2 gap-.75 rounded-xl overflow-hidden transition-colors duration-500"
+    class="group relative w-full flex items-center justify-between px-3 py-[10px] gap-.75 rounded-xl overflow-hidden transition-colors duration-500"
     (click)="handleSelected(i)"
   >
     <div
-      [ngClass]="{ 'opacity-100 translate-x-0': isSelected[i] }"
-      class="w-12 h-12 opacity-0 absolute top-1/2 -left-6 -translate-x-20 -translate-y-1/2 bg-accent-purple-200 rounded-1/2 blur-2xl transition-all duration-700"
+      [ngClass]="{ 'opacity-50 translate-x-0': isSelected[i] }"
+      class="w-12 h-12 opacity-0 absolute top-1/2 -left-6 -translate-x-20 -translate-y-1/2 bg-accent-green-100 rounded-1/2 blur-2xl transition-all duration-700"
     ></div>
 
-    <div class="flex items-center gap-3">
-      <i [ngClass]="list.icon" class="ph-bold text-sm"></i>
+    <div class="flex items-center gap-[14px]">
+      <i
+        *ngIf="list.icon?.includes('ph')"
+        [ngClass]="[list.icon, !isEditing ? 'opacity-100' : '']"
+        class="ph-bold text-sm"
+      ></i>
+      <app-dona-svg
+        *ngIf="list.icon?.includes('dona')"
+        [ngClass]="[list?.icon, !isEditing ? 'opacity-100' : '']"
+        twClasses="h-[14px]"
+        class="opacity-0 stroke-2 transition-opacity duration-500"
+      ></app-dona-svg>
       <h2 class="text-sm font-medium text-ellipsis">{{ list.name }}</h2>
     </div>
 
