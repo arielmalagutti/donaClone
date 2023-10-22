@@ -1,8 +1,8 @@
 <div class="w-full h-full pt-10 flex flex-col items-center">
   <div class="max-w-[664px] w-full h-full flex flex-col gap-8">
     <div
-      [ngClass]="{ 'bg-white px-1 py-2': isEditing }"
-      class="w-full h-full max-h-12 relative gap-3 flex items-center rounded-xl"
+      [ngClass]="{ 'bg-white px-2 py-2 shadow-sm': isEditing }"
+      class="w-full h-full max-h-11 relative gap-3 flex items-center rounded-xl"
     >
       <app-icon-picker *ngIf="isEditing"></app-icon-picker>
       <i
@@ -13,6 +13,7 @@
       <app-dona-svg
         *ngIf="todoList?.icon?.includes('dona') && !isEditing"
         [ngClass]="[todoList?.icon, !isEditing ? 'opacity-100' : '']"
+        twClasses="h-7"
         class="opacity-0 transition-opacity duration-500"
       ></app-dona-svg>
 
@@ -23,37 +24,39 @@
           [value]="this.todoList?.name"
           type="text"
           placeholder="Insert a new name for this list"
-          (blur)="listNameEditorInput.value = ''; this.isEditing = false"
+          (blur)="this.isEditing = false"
           (keyup.escape)="this.isEditing = false"
           (keyup.enter)="this.handleEditList(listNameEditorInput)"
-          class="flex bg-transparent placeholder:text-base text-xl font-semibold text-[#25292C] outline-none"
+          class="flex bg-transparent placeholder:text-base text-xl font-medium text-[#25292C] outline-none"
         />
         <h1
           *ngIf="!this.isEditing"
-          class="flex text-xl font-semibold text-[#25292C] dark:text-zinc-50 text-ellipsis"
+          class="flex text-xl font-medium text-[#25292C] dark:text-zinc-50 text-ellipsis"
         >
           {{ this.todoList?.name }}
         </h1>
 
         <div class="relative">
           <button
+            *ngIf="!isEditing"
             title="Actions"
             type="button"
-            (click)="toggleActions()"
+            (click)="openDropdown()"
             [ngClass]="{ 'opacity-100 -translate-x-0': isActionsOpen }"
-            class="w-8 h-8 translate-x-3 opacity-0 flex items-center justify-center p-1 rounded-lg group-hover:opacity-100 hover:bg-[#FFFFFF50] group-hover:translate-x-0 transition-all duration-300"
+            class="w-8 h-8 translate-x-1 opacity-0 flex items-center justify-center p-1 rounded-lg group-hover:opacity-100 hover:bg-[#FFFFFF50] group-hover:translate-x-0 transition-all duration-300"
           >
             <i class="ph-bold ph-dots-three-vertical text-lg"></i>
           </button>
 
           <div
             *ngIf="isActionsOpen"
+            appDropdown
+            (dropdownVisible)="closeDropdown($event)"
             [ngClass]="{ 'opacity-100': isActionsOpen }"
             class="opacity-0 max-w-[148px] w-[148px] absolute z-10 top-9 left-0 flex flex-col p-1 gap-1 bg-white rounded-[11px] shadow transition-opacity duration-1000"
           >
             <app-actions-dropdown
               (onEdit)="this.isEditing = true; this.isActionsOpen = false"
-              (blur)="this.isActionsOpen = false"
             ></app-actions-dropdown>
           </div>
         </div>

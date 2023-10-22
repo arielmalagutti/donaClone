@@ -81,4 +81,19 @@ export class TodoListComponent implements OnInit {
       reverseTodoIndex - event.currentIndex
     );
   }
+
+  /**
+   * Refactor open and close dropdown to work without setTimeout
+   * when button is clicked it sets isActionsOpen = true, then it renders
+   * dropdown component and directive listens to the same click of the button and disables it
+   */
+  openDropdown() {
+    setTimeout(() => {
+      this.isActionsOpen = true;
+    }, 1);
+  }
+
+  closeDropdown(event: boolean) {
+    this.isActionsOpen = event;
+  }
 }

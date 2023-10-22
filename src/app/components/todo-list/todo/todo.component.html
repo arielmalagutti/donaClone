@@ -49,7 +49,7 @@
       <button
         title="Actions"
         type="button"
-        (click)="isActionsOpen = true"
+        (click)="openDropdown()"
         class="invisible flex p-1 items-center justify-center rounded group-hover:visible hover:bg-[#ECEFF2] transition-colors duration-300"
       >
         <i class="ph-bold ph-dots-three-vertical pointer-events-none"></i>
@@ -59,6 +59,8 @@
 
   <div
     *ngIf="isActionsOpen"
+    appDropdown
+    (dropdownVisible)="closeDropdown($event)"
     [ngClass]="{ 'opacity-100': isActionsOpen }"
     class="opacity-0 max-w-[148px] w-full absolute z-10 top-[52px] right-0 flex flex-col p-1 gap-1 bg-white rounded-[11px] shadow transition-opacity duration-1000"
   >
@@ -66,7 +68,6 @@
       (onEdit)="isEditing = true"
       (onDuplicate)="onDuplicate()"
       (onDelete)="onDelete(todo.id, todo.todoListId)"
-      (blur)="isActionsOpen = false"
     ></app-actions-dropdown>
   </div>
 </div>

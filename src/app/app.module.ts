@@ -12,6 +12,7 @@ import { TodoComponent } from './components/todo-list/todo/todo.component';
 import { ActionsDropdownComponent } from './components/actions-dropdown/actions-dropdown.component';
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
 import { DonaSvgComponent } from './components/dona-svg/dona-svg.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DonaSvgComponent } from './components/dona-svg/dona-svg.component';
     ActionsDropdownComponent,
     IconPickerComponent,
     DonaSvgComponent,
+    DropdownDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, DragDropModule],
   providers: [],
