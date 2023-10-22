@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./dona-svg.component.css'],
 })
 export class DonaSvgComponent {
-  @Input() size?: 'sm' | 'md' | 'lg' = 'md';
+  @Input() twClasses?: string;
 }
