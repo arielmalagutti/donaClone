@@ -10,8 +10,26 @@ module.exports = {
       },
 
       boxShadow: {
+        actionsDropdown:
+          "inset 0 0 1px 1px rgba(255 255 255 / 05%),0px 40px 3px 10px rgba(0 0 0 / 10%)",
+
+        addTodoBar: "inset 0 0 0 1px #ffffff10, 0 30px 80px 0 #00000010",
+
+        sidebar:
+          "inset 0 0 0 1px #ffffff10,0 2px 8px 0 #00000010, 0 30px 70px 0 #00000010",
+
         draggableItem:
           "0 4px 12px rgba(0 0 0 / 3%),0 30px 80px rgba(0 0 0 / 10%), inset 0 1px 0 0 var(--category-item-inset-shadow,transparent)",
+      },
+
+      textColor: {
+        sideBar: {
+          itemLength: {
+            dark: "#959ba3",
+          },
+        },
+
+        shortcut: {},
       },
 
       colors: {
@@ -44,6 +62,13 @@ module.exports = {
           },
         },
 
+        actionsDropdown: {
+          light: "",
+          dark: "#2b2e35cc",
+
+          hover: {},
+        },
+
         background: {
           light: "#eceeef",
           dark: "#232529",
@@ -55,7 +80,38 @@ module.exports = {
 
           item: {
             light: "#f5f7fa",
+            dark: "#353941",
           },
+
+          itemLength: {
+            dark: "#4c5158",
+          },
+
+          todoList: {
+            addTodoBar: {
+              light: {},
+
+              active: {
+                dark: "#2f343d",
+              },
+            },
+          },
+        },
+
+        addTodoBar: {
+          dark: "#2a2e37cc",
+
+          active: {
+            dark: "#2f343d",
+          },
+        },
+
+        todoItem: {
+          dark: "#2f343d",
+        },
+
+        checkbox: {
+          dark: "#494d55",
         },
       },
 
