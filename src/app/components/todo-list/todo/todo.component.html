@@ -58,7 +58,7 @@
     appDropdown
     (dropdownVisible)="closeDropdown($event)"
     [ngClass]="{ 'opacity-100': isActionsOpen }"
-    class="absolute right-0 top-[52px] z-10 flex w-full max-w-[148px] flex-col gap-1 rounded-xl bg-white p-1 opacity-0 shadow transition-opacity duration-1000 dark:bg-actionsDropdown-dark dark:backdrop-blur"
+    class="absolute right-0 top-[52px] z-10 w-full max-w-[140px] opacity-0"
   >
     <app-actions-dropdown
       (onEdit)="isEditing = true"

@@ -11,7 +11,7 @@ module.exports = {
 
       boxShadow: {
         actionsDropdown:
-          "inset 0 0 1px 1px rgba(255 255 255 / 05%),0px 40px 3px 10px rgba(0 0 0 / 10%)",
+          "inset 0 0 0 1px #ffffff05, 0 2px 8px #00000004 ,0 30px 70px #00000010",
 
         addTodoBar: "inset 0 0 0 1px #ffffff10, 0 30px 80px 0 #00000010",
 
