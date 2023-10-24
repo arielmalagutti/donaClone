@@ -13,7 +13,7 @@ import { DataService } from '@services/data.service';
 export class TodoListComponent implements OnInit {
   listNameEditorInputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('listNameEditorInput') set todoInput(
-    listInputRef: ElementRef<HTMLInputElement>
+    listInputRef: ElementRef<HTMLInputElement>,
   ) {
     if (listInputRef) {
       this.listNameEditorInputRef = listInputRef;
@@ -31,14 +31,14 @@ export class TodoListComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.listId = params['listId'] || '';
       this.todoList = this.dataService.todoLists.find(
-        (list) => list.id === this.listId
+        (list) => list.id === this.listId,
       );
       console.log(this.todoList?.icon);
     });
@@ -78,7 +78,7 @@ export class TodoListComponent implements OnInit {
     moveItemInArray(
       this.todoList!.todos!,
       reverseTodoIndex - event.previousIndex,
-      reverseTodoIndex - event.currentIndex
+      reverseTodoIndex - event.currentIndex,
     );
   }
 

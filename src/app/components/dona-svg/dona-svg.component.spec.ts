@@ -8,7 +8,7 @@ describe('DonaSvgComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DonaSvgComponent]
+      declarations: [DonaSvgComponent],
     });
     fixture = TestBed.createComponent(DonaSvgComponent);
     component = fixture.componentInstance;

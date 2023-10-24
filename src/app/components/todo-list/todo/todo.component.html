@@ -5,9 +5,9 @@
       'rounded-t-2xl': firstChild,
       'rounded-b-2xl': lastChild
     }"
-    class="group w-ful.l px-6 py-3 bg-white/75 dark:bg-todoItem-dark rounded-lg flex items-center justify-between"
+    class="w-ful.l group flex items-center justify-between rounded-lg bg-white/75 px-6 py-3 dark:bg-todoItem-dark"
   >
-    <div class="w-full flex gap-3 items-center">
+    <div class="flex w-full items-center gap-3">
       <label class="peer cursor-pointer">
         <input
           #checkbox
@@ -19,11 +19,11 @@
         />
 
         <div
-          class="relative w-5 h-5 bg-[#E9E9E9] dark:bg-checkbox-dark hover:bg-[#D9D9D9] peer-checked:bg-black rounded-[7px] overflow-clip pointer-events-none transition-colors duration-300"
+          class="pointer-events-none relative h-5 w-5 overflow-clip rounded-[7px] bg-[#E9E9E9] transition-colors duration-300 hover:bg-[#D9D9D9] peer-checked:bg-black dark:bg-checkbox-dark"
         >
           <i
             *ngIf="checkbox.checked"
-            class="ph-bold ph-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs"
+            class="ph-bold ph-check absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-white"
           ></i>
         </div>
       </label>
@@ -38,22 +38,22 @@
           onEdit(todo.id, todo.todoListId, todoInput.value); todoInput.blur()
         "
         [value]="todo.description"
-        class="w-full text-sm bg-transparent outline-none"
+        class="w-full bg-transparent text-sm outline-none"
       />
 
       <span
         *ngIf="!isEditing"
-        class="text-sm text-[#4B4B4B] dark:text-white peer-checked:text-black dark:peer-checked:text-gray-400 peer-checked:line-through decoration-black dark:decoration-white transition-all"
+        class="text-sm text-[#4B4B4B] decoration-black transition-all peer-checked:text-black peer-checked:line-through dark:text-white dark:decoration-white dark:peer-checked:text-gray-400"
         >{{ todo.description }}</span
       >
     </div>
 
-    <div class="h-full flex items-center justify-center">
+    <div class="flex h-full items-center justify-center">
       <button
         title="Actions"
         type="button"
         (click)="openDropdown()"
-        class="invisible flex p-1 items-center justify-center rounded group-hover:visible hover:bg-[#ECEFF2] dark:hover:bg-white/10 transition-colors duration-300"
+        class="invisible flex items-center justify-center rounded p-1 transition-colors duration-300 hover:bg-[#ECEFF2] group-hover:visible dark:hover:bg-white/10"
       >
         <i
           class="ph-bold ph-dots-three-vertical pointer-events-none dark:text-white"
@@ -67,7 +67,7 @@
     appDropdown
     (dropdownVisible)="closeDropdown($event)"
     [ngClass]="{ 'opacity-100': isActionsOpen }"
-    class="opacity-0 max-w-[148px] w-full absolute z-10 top-[52px] right-0 flex flex-col p-1 gap-1 bg-white dark:bg-actionsDropdown-dark dark:backdrop-blur rounded-xl shadow transition-opacity duration-1000"
+    class="absolute right-0 top-[52px] z-10 flex w-full max-w-[148px] flex-col gap-1 rounded-xl bg-white p-1 opacity-0 shadow transition-opacity duration-1000 dark:bg-actionsDropdown-dark dark:backdrop-blur"
   >
     <app-actions-dropdown
       (onEdit)="isEditing = true"

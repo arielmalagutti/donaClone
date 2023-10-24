@@ -8,7 +8,7 @@ import { todos } from '@mocks/todos';
 })
 export class DataService {
   todoLists: TodoList[] = JSON.parse(
-    localStorage.getItem('allLists') || JSON.stringify(todos)
+    localStorage.getItem('allLists') || JSON.stringify(todos),
   );
   private _todoId = 0;
 
@@ -51,7 +51,7 @@ export class DataService {
 
   onCreateTodo(
     description: Todo['description'],
-    todoListId: Todo['todoListId']
+    todoListId: Todo['todoListId'],
   ) {
     this.iterateTodosLength();
 
@@ -80,14 +80,14 @@ export class DataService {
   onEditTodo(
     id: Todo['id'],
     todoListId: Todo['todoListId'],
-    newDescription: Todo['description']
+    newDescription: Todo['description'],
   ) {
     try {
       if (!newDescription) throw new Error('Todo description is missing!');
 
       let listId = this.todoLists.findIndex((list) => list.id === todoListId);
       let todoIndex = this.todoLists[listId].todos?.findIndex(
-        (todo) => todo.id === id
+        (todo) => todo.id === id,
       );
 
       if (
@@ -108,7 +108,7 @@ export class DataService {
 
       let listId = this.todoLists.findIndex((list) => list.id === todoListId);
       let todoIndex = this.todoLists[listId].todos?.findIndex(
-        (todo) => todo.id === id
+        (todo) => todo.id === id,
       );
 
       this.todoLists[listId]?.todos?.splice(todoIndex!, 1);

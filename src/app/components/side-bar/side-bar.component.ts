@@ -14,7 +14,7 @@ export class SideBarComponent implements OnInit {
   newListInputElement!: ElementRef<HTMLInputElement>;
 
   @ViewChild('newListInput') set newListInput(
-    listInputRef: ElementRef<HTMLInputElement>
+    listInputRef: ElementRef<HTMLInputElement>,
   ) {
     if (listInputRef) {
       this.newListInputElement = listInputRef;
@@ -30,7 +30,10 @@ export class SideBarComponent implements OnInit {
   isEditing: boolean = false;
   isSelected: boolean[] = [];
 
-  constructor(private data: DataService, private route: ActivatedRoute) {}
+  constructor(
+    private data: DataService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('listId');
@@ -39,7 +42,7 @@ export class SideBarComponent implements OnInit {
 
   private initializeSelectedList() {
     this.todoLists.forEach((todoList) =>
-      this.isSelected.push(todoList.id === this.listId)
+      this.isSelected.push(todoList.id === this.listId),
     );
   }
 

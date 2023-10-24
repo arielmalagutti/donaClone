@@ -14,7 +14,7 @@ export class TodoComponent {
   todoInputElement!: ElementRef<HTMLInputElement>;
 
   @ViewChild('todoInput') set todoInput(
-    listInputRef: ElementRef<HTMLInputElement>
+    listInputRef: ElementRef<HTMLInputElement>,
   ) {
     if (listInputRef) {
       this.todoInputElement = listInputRef;
@@ -41,7 +41,7 @@ export class TodoComponent {
   onEdit(
     id: Todo['id'],
     listId: Todo['todoListId'],
-    newDescription: Todo['description']
+    newDescription: Todo['description'],
   ) {
     this.dataService.onEditTodo(id, listId, newDescription);
   }
