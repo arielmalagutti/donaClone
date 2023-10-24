@@ -13,6 +13,7 @@ import { ActionsDropdownComponent } from './components/actions-dropdown/actions-
 import { IconPickerComponent } from './components/icon-picker/icon-picker.component';
 import { DonaSvgComponent } from './components/dona-svg/dona-svg.component';
 import { DropdownDirective } from './directives/dropdown.directive';
+import { ActionsButtonComponent } from './components/actions-button/actions-button.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     IconPickerComponent,
     DonaSvgComponent,
     DropdownDirective,
+    ActionsButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, DragDropModule],
   providers: [],
