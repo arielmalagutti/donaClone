@@ -97,7 +97,7 @@ export class DataService {
     newDescription: Todo['description'],
   ) {
     try {
-      if (!newDescription) throw new Error('Todo description is missing!');
+      if (!newDescription) return;
 
       let listId = this.todoLists.findIndex((list) => list.id === todoListId);
       let todoIndex = this.todoLists[listId].todos?.findIndex(
@@ -110,6 +110,22 @@ export class DataService {
         return;
 
       this.todoLists[listId].todos![todoIndex!].description = newDescription;
+      localStorage.setItem('allLists', JSON.stringify(this.todoLists));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  onDuplicateTodo(id: Todo['id'], todoListId: Todo['todoListId']) {
+    try {
+      let listId = this.todoLists.findIndex((list) => list.id === todoListId);
+
+      let todo = this.todoLists[listId].todos?.find((todo) => todo.id === id);
+      let todoIndex = this.todoLists[listId].todos?.findIndex(
+        (todo) => todo.id === id,
+      );
+
+      this.todoLists[listId].todos?.splice(todoIndex + 1, 0, todo);
       localStorage.setItem('allLists', JSON.stringify(this.todoLists));
     } catch (e) {
       console.error(e);

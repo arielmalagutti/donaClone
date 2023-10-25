@@ -62,7 +62,7 @@
   >
     <app-actions-dropdown
       (onEdit)="isEditing = true"
-      (onDuplicate)="onDuplicate()"
+      (onDuplicate)="onDuplicate(todo.id, todo.todoListId)"
       (onDelete)="onDelete(todo.id, todo.todoListId)"
     ></app-actions-dropdown>
   </div>

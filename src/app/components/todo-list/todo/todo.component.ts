@@ -46,8 +46,9 @@ export class TodoComponent {
     this.dataService.onEditTodo(id, listId, newDescription);
   }
 
-  onDuplicate() {
-    // this.dataService.onDuplicateTodo()
+  onDuplicate(todoId: string, todoListId: string) {
+    console.log(todoId);
+    this.dataService.onDuplicateTodo(todoId, todoListId);
   }
 
   onDelete(id: any, listId: any) {
