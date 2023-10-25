@@ -23,7 +23,7 @@
           *ngIf="this.isEditing"
           [value]="this.todoList?.name"
           type="text"
-          placeholder="Insert a new name for this list"
+          placeholder="List name"
           (blur)="this.isEditing = false"
           (keyup.escape)="this.isEditing = false"
           (keyup.enter)="this.handleEditList(listNameEditorInput)"

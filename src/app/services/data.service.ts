@@ -21,6 +21,8 @@ export class DataService {
   }
 
   onCreateList({ name, icon }: TodoList) {
+    if (!icon) icon = 'dona stroke-accent-blue-100'; // This should be passed with a default value already, shouldn't be done here.
+
     try {
       this.todoLists.push({
         id: String(this.todoLists.length + 1),

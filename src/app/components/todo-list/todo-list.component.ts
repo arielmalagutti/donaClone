@@ -40,7 +40,6 @@ export class TodoListComponent implements OnInit {
       this.todoList = this.dataService.todoLists.find(
         (list) => list.id === this.listId,
       );
-      console.log(this.todoList?.icon);
     });
   }
 

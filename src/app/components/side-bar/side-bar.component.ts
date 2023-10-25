@@ -27,7 +27,10 @@ export class SideBarComponent implements OnInit {
 
   listId: string | null = null;
 
-  isEditing: boolean = false;
+  isCreatingList: boolean = false;
+  isEditing: boolean[] = new Array(this.todoLists.length).fill(false);
+  isActionsOpen: boolean[] = new Array(this.todoLists.length).fill(false);
+
   isSelected: boolean[] = [];
 
   constructor(
@@ -46,8 +49,33 @@ export class SideBarComponent implements OnInit {
     );
   }
 
+  /** @param index */
+  toggleActionsDropwdown(listIndex: number) {
+    this.isActionsOpen = this.isActionsOpen.map((_, id) =>
+      id === listIndex
+        ? (this.isActionsOpen[listIndex] = !this.isActionsOpen[listIndex])
+        : false,
+    );
+  }
+
+  /**
+   * Dummy fn: Holds no data
+   * @param index
+   */
+  toggleEditing(listIndex: number) {
+    this.isEditing = this.isEditing.map((_, id) =>
+      id === listIndex
+        ? (this.isEditing[listIndex] = !this.isEditing[listIndex])
+        : false,
+    );
+
+    this.isActionsOpen = this.isActionsOpen.map(
+      (_, id) => id === listIndex && (this.isActionsOpen[listIndex] = false),
+    );
+  }
+
   createNewList() {
-    this.isEditing = true;
+    this.isCreatingList = true;
   }
 
   handleNewList(listName: string) {
@@ -66,13 +94,32 @@ export class SideBarComponent implements OnInit {
     }
   }
 
+  /**
+   * Triggers the onEdit fn in .src/services/data.service.ts then sets the isEditing state to false
+   * @param input
+   * @param index
+   */
+  handleEditList(
+    input: HTMLInputElement,
+    listIndex: number,
+    listId: TodoList['id'],
+  ) {
+    this.data.onEditList({ id: listId, name: input.value });
+
+    this.isEditing = this.isEditing.map((_, id) =>
+      id === listIndex
+        ? (this.isEditing[listIndex] = !this.isEditing[listIndex])
+        : false,
+    );
+  }
+
   handleSelected(index: number) {
     this.isSelected.fill(false);
     this.isSelected[index] = true;
   }
 
   onBlur() {
-    this.isEditing = false;
+    this.isCreatingList = false;
   }
 
   drop(event: CdkDragDrop<TodoList[]>) {
