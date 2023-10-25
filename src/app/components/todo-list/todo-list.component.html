@@ -1,8 +1,10 @@
 <div class="flex h-full w-full flex-col items-center pt-9">
   <div class="flex h-full w-full max-w-[664px] flex-col gap-5">
     <div
-      [ngClass]="{ 'bg-white px-2 py-2 shadow-sm': isEditing }"
-      class="relative flex h-full max-h-11 w-full items-center gap-3 rounded-xl"
+      [ngClass]="{
+        'bg-white px-2 py-2 shadow-sm dark:bg-[#2a2e37]': isEditing
+      }"
+      class="relative flex h-full max-h-11 w-full items-center gap-3 rounded-xl bg-transparent transition-all duration-300"
     >
       <app-icon-picker *ngIf="isEditing"></app-icon-picker>
       <i
@@ -27,7 +29,7 @@
           (blur)="this.isEditing = false"
           (keyup.escape)="this.isEditing = false"
           (keyup.enter)="this.handleEditList(listNameEditorInput)"
-          class="flex bg-transparent text-xl font-medium text-[#25292C] outline-none placeholder:text-base"
+          class="flex bg-transparent text-xl font-medium text-[#25292C] outline-none placeholder:text-base dark:text-white"
         />
         <h1
           *ngIf="!this.isEditing"
@@ -52,7 +54,8 @@
             class="absolute left-0 top-9 z-10 flex w-full max-w-[148px] opacity-0 shadow transition-opacity duration-1000"
           >
             <app-actions-dropdown
-              (onEdit)="this.isEditing = true; this.isActionsOpen = false"
+              (onEdit)="isEditing = true; isActionsOpen = false"
+              (onDelete)="handleDeleteList()"
             ></app-actions-dropdown>
           </div>
         </div>

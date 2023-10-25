@@ -50,7 +50,7 @@ export class TodoListComponent implements OnInit {
   }
 
   onCreateTodo(input: HTMLInputElement) {
-    let description = input.value;
+    let description = input.value.trim();
 
     this.dataService.onCreateTodo(description, this.listId);
     input.value = '';
@@ -58,7 +58,17 @@ export class TodoListComponent implements OnInit {
 
   handleEditList(input: HTMLInputElement) {
     if (input.value.trim())
-      this.dataService.onEditList({ id: this.listId, name: input.value });
+      this.dataService.onEditList({
+        id: this.listId,
+        name: input.value.trim(),
+      });
+
+    this.isEditing = false;
+    this.isActionsOpen = false;
+  }
+
+  handleDeleteList() {
+    this.dataService.onDeleteList(this.listId);
 
     this.isEditing = false;
     this.isActionsOpen = false;
