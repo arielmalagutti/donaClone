@@ -113,6 +113,10 @@ export class SideBarComponent implements OnInit {
     );
   }
 
+  handleDeleteList(id: TodoList['id']) {
+    this.data.onDeleteList(id);
+  }
+
   handleSelected(index: number) {
     this.isSelected.fill(false);
     this.isSelected[index] = true;

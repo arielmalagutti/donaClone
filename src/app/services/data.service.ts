@@ -39,6 +39,8 @@ export class DataService {
 
   onEditList({ id, name: newListname }: TodoList) {
     try {
+      if (!newListname) return;
+
       this.todoLists.filter((list, index) => {
         if (list.id === id) this.todoLists[index].name = newListname;
       });
@@ -49,7 +51,17 @@ export class DataService {
     }
   }
 
-  onDeleteList() {}
+  onDeleteList(id: TodoList['id']) {
+    try {
+      this.todoLists.filter((list, index) => {
+        if (list.id === id) this.todoLists.splice(index, 1);
+      });
+
+      localStorage.setItem('allLists', JSON.stringify(this.todoLists));
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   onCreateTodo(
     description: Todo['description'],
